@@ -83,10 +83,14 @@ jobs:
           #git push https://dsjena:${{ secrets.TEST_DATA }}@github.com/dsjena/test-data.git
           #${{ secrets.GITHUB_TOKEN }}
           #git push https://${GITHUB_ACTOR}:${{ secrets.TEST_DATA }}@github.com/dsjena/test-data.git
-      - name: Push second data
-        uses: ad-m/github-push-action@master
+      - uses: mikeal/publish-to-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_DATA }}
+      
+      #- name: Push second data
+      #  uses: ad-m/github-push-action@master
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.TEST_DATA }}
         #with:
         #  repository: dsjena/test-data
         
