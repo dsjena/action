@@ -80,7 +80,7 @@ jobs:
           git add .
           git status
           git diff-index --quiet HEAD || git commit -m "Update json" -a
-          git push https://dsjena:${{ secrets.PAT }}@github.com/dsjena/test-data.git
+          git push https://dsjena:${{ secrets.PU }}@github.com/dsjena/test-data.git
           #${{ secrets.GITHUB_TOKEN }}
           #git push https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git
       #- name: Push second data
