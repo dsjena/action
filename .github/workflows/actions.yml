@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
           uses: actions/checkout@v2
           with:
-	  path: main
+            path: main
 
       - name: data repo
         uses: actions/checkout@v2
