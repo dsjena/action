@@ -94,7 +94,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           repository: dsjena/test-data
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.TEST_DATA }}
           directory: data
             
           
