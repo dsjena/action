@@ -72,7 +72,7 @@ jobs:
           ls 
           echo ${GITHUB_WORKSPACE}
           git remote -v
-          git remote add origin https://github.com/djena/test-data.git
+          #git remote add origin https://github.com/djena/test-data.git
           echo ${GITHUB_WORKSPACE}
           git remote -v
           git config --local user.email "action@github.com"
