@@ -1,8 +1,8 @@
 name: Data Collector
 on:
   push:
-  schedule:
-    - cron:  '*/30 * * * *'
+  #schedule:
+  #  - cron:  '*/30 * * * *'
 #
 
 jobs:
@@ -36,6 +36,7 @@ jobs:
         run: |
           echo ${GITHUB_WORKSPACE}
           pwd
+          cat .git/config
           cd main
           #ls -rtl
           ls
@@ -69,6 +70,7 @@ jobs:
       - name: actual data
         run: |
           cd ./data/
+          cat .git/config
           ls 
           echo ${GITHUB_WORKSPACE}
           git config --local user.email "action@github.com"
