@@ -1,0 +1,31 @@
+name: update data in 60M
+
+on:
+  push:
+  #schedule:
+  #  - cron:  '0 * * * *'
+
+jobs:
+  get_cases:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      
+    - name: Set up me python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+        
+    #- name: Install dependencies
+    #  run: |
+    #    python -m pip install --upgrade pip
+    #    pip install -r requirements.txt
+    #    
+    - name: Run Shell
+      run: |
+        ls -rtl
+        sh run.sh
+
+    - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+      with:
+        commit_message: update data
