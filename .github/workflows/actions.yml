@@ -72,8 +72,8 @@ jobs:
           ls 
           echo ${GITHUB_WORKSPACE}
           git remote -v
-          #git remote add destination https://github.com/dsjena/test-data.git
-          git remote set-url origin https://dsjena:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git
+          git remote add destination https://github.com/dsjena/test-data.git
+          #git remote set-url origin https://dsjena:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git
           echo ${GITHUB_WORKSPACE}
           git remote -v
           git config --local user.email "action@github.com"
@@ -81,7 +81,7 @@ jobs:
           git add .
           git status
           git diff-index --quiet HEAD || git commit -m "Update json" -a
-          git push
+          git push https://$USERNAME:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git $GITHUB_REF
      # - name: Push second data
      #   uses: ad-m/github-push-action@master
      #   with:
