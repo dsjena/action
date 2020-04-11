@@ -78,7 +78,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          directory: main
+          directory: data
       #    cp -r ../main/csv .
       #    
       #- name: commit data
