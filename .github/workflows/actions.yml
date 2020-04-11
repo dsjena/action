@@ -13,12 +13,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: main
-
-      - name: data repo
-        uses: actions/checkout@v2
-        with:
-          repository: dsjena/test-data
-          path: data
       - name: Set up me python
         uses: actions/setup-python@v1
         with:
@@ -42,11 +36,11 @@ jobs:
           sh run.sh
           fmt=`date '+%d%m%Y%M%S'`
           touch ${fmt}
-          ls ../
-          ls ../data
-          cp -r ${fmt} ../data/.
-          cp -r csv/*.csv ../data/.
-          ls ../data
+          #ls ../
+          #ls ../data
+          #cp -r ${fmt} ../data/.
+          #cp -r csv/*.csv ../data/.
+          #ls ../data
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
@@ -65,14 +59,19 @@ jobs:
       #- name: Update Data
       #  uses: ./data/
       #  id: data
-        
+      - name: data repo
+        uses: actions/checkout@v2
+        with:
+          repository: dsjena/test-data
+          path: data
       - name: actual data
         run: |
           cd ./data/
           ls 
+          cp ../main/*2020* .
           echo ${GITHUB_WORKSPACE}
           git remote -v
-          git remote add destination https://github.com/dsjena/test-data.git
+          #git remote add destination https://github.com/dsjena/test-data.git
           #git remote set-url origin https://dsjena:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git
           echo ${GITHUB_WORKSPACE}
           git remote -v
@@ -81,12 +80,12 @@ jobs:
           git add .
           git status
           git diff-index --quiet HEAD || git commit -m "Update json" -a
-          git push https://dsjena:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git
-     # - name: Push second data
-     #   uses: ad-m/github-push-action@master
-     #   with:
-     #     github_token: ${{ secrets.GITHUB_TOKEN }}
-     #     directory: data
+          #git push https://dsjena:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git
+      - name: Push second data
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: data
       ##    cp -r ../main/csv .
       #    
       #- name: commit data
