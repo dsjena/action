@@ -35,6 +35,8 @@ jobs:
       #  id: code
       - name: actual run
         run: |
+          echo ${GITHUB_WORKSPACE}
+          pwd
           cd main
           ls -rtl
           sh run.sh
@@ -48,12 +50,12 @@ jobs:
       #  uses: ./data/
       #  id: data
         
-      - name: actual data
-        run: |
-          cd ../data/
-          cp -r ../main/csv .
-          
-      - name: commit data
-        uses: stefanzweifel/git-auto-commit-action@v4.1.1
-        with:
-          commit_message: update data
+      #- name: actual data
+      #  run: |
+      #    cd ../data/
+      #    cp -r ../main/csv .
+      #    
+      #- name: commit data
+      #  uses: stefanzweifel/git-auto-commit-action@v4.1.1
+      #  with:
+      #    commit_message: update data
