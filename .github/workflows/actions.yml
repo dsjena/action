@@ -30,9 +30,10 @@ jobs:
           #python -m pip install --upgrade pip
           #pip install -r requirements.txt
         
-      - name: Run Python
+      - name: main sec
         uses: ./main/
         id: code
+      - name: actual run
         run: |
           cd main
           ls -rtl
@@ -46,6 +47,8 @@ jobs:
       - name: Update Data
         uses: ./data/
         id: data
+        
+      - name: actual data
         run: |
           cd ../data/
           cp -r ../main/csv .
