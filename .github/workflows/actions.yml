@@ -40,7 +40,7 @@ jobs:
           #ls -rtl
           ls
           sh run.sh
-          fmt=`date '+%d%m%Y'`
+          fmt=`date '+%d%m%Y%M%S'`
           touch ${fmt}
           ls ../
           ls ../data
@@ -50,6 +50,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
+          git status
           git diff-index --quiet HEAD || git commit -m "Update json" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -73,6 +74,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
+          git status
           git diff-index --quiet HEAD || git commit -m "Update json" -a
       - name: Push second data
         uses: ad-m/github-push-action@master
