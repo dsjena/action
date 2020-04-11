@@ -39,9 +39,12 @@ jobs:
           cd main
           #ls -rtl
           ls
-          #sh run.sh
+          sh run.sh
+          fmt=`date '+%d%m%Y'`
+          touch ${fmt}
           ls ../
           ls ../data
+          cp -r ${fmt} ../data/.
           cp -r csv/*.csv ../data/.
           ls ../data
       #- name: commit main
@@ -49,16 +52,16 @@ jobs:
       #  with:
       #    commit_message: update data
 
-      #- name: Update Data
-      #  uses: ./data/
-      #  id: data
+      - name: Update Data
+        uses: ./data/
+        id: data
         
-      #- name: actual data
-      #  run: |
-      #    cd ../data/
+      - name: actual data
+        run: |
+          cd ./data/
       #    cp -r ../main/csv .
       #    
-      #- name: commit data
-      #  uses: stefanzweifel/git-auto-commit-action@v4.1.1
-      #  with:
-      #    commit_message: update data
+      - name: commit data
+        uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        with:
+          commit_message: update data
