@@ -70,6 +70,15 @@ jobs:
           cd ./data/
           ls 
           echo ${GITHUB_WORKSPACE}
+                    git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Update json" -a
+      - name: Push second data
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: main
       #    cp -r ../main/csv .
       #    
       #- name: commit data
