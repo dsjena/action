@@ -1,47 +1,46 @@
-name: update data in 60M
-
+name: Data Collector
 on:
   push:
-  #schedule:
-  #  - cron:  '0 * * * *'
-
+#  schedule:
+#    - cron:  '*/30 * * * *'
+#
 jobs:
-  main:
+  extract_job:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-      
-    - name: Set up me python
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.8
+      - name: Checkout
+	      uses: actions/checkout@master
+	      with:
+	        path: main
+      - name: data repo
+        uses: actions/checkout@v2
+        with:
+          repository: dsjena/test-data
+          path: data
+      - name: Set up me python
+        uses: actions/setup-python@v1
+          with:
+             python-version: 3.8
+      - name: Install dependencies
+        #run: |
+          #python -m pip install --upgrade pip
+          #pip install -r requirements.txt
         
-    #- name: Install dependencies
-    #  run: |
-    #    python -m pip install --upgrade pip
-    #    pip install -r requirements.txt
-    #    
-    - name: Run Shell
-      run: |
-        ls -rtl
-        sh run.sh
-        ls -rtl
+      - name: Run Python
+        uses: ./main/
+        run: |
+          cd main
+          ls -rtl
+          sh run.sh
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        with:
+          commit_message: update data
 
-    - uses: stefanzweifel/git-auto-commit-action@v4.1.1
-      with:
-        commit_message: update data
-  data:
-     steps:
-       - name: Set up me python
-         uses: actions/checkout@master@v2
-	 with:
-	    repository: dsjena/test-data
-            path: test-data
-       - name: Run Shell
-         run: |
-             ls -rtl
-             cp ../action/*.csv .
-             ls -rtl                                                                                                                              
-       - uses: stefanzweifel/git-auto-commit-action@v4.1.1
-         with:
-         commit_message: update data test data
+      - name: Update Data
+        uses: ./data/
+        run: |
+          cd ../data/
+          cp -r ../main/csv .
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        with:
+          commit_message: update data
