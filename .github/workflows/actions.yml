@@ -87,7 +87,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           repository: dsjena/test-data
-          github_token: ${{ secrets.GitHub_PAT }}
+          github_token: ${{ secrets.PU }}
           directory: data
       ##    cp -r ../main/csv .
       #    
