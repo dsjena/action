@@ -81,11 +81,13 @@ jobs:
           git status
           git diff-index --quiet HEAD || git commit -m "Update json" -a
           #git push https://dsjena:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git
-      - name: Push second data
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          directory: data
+          #${{ secrets.GITHUB_TOKEN }}
+          git push https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/dsjena/test-data.git
+      #- name: Push second data
+      #  uses: ad-m/github-push-action@master
+      #  with:
+      #    github_token: ${{ secrets.GITHUB_TOKEN }}
+      #    directory: data
       ##    cp -r ../main/csv .
       #    
       #- name: commit data
