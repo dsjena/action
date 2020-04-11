@@ -6,7 +6,7 @@ on:
   #  - cron:  '0 * * * *'
 
 jobs:
-  get_cases:
+  main:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -25,7 +25,23 @@ jobs:
       run: |
         ls -rtl
         sh run.sh
+        ls -rtl
 
     - uses: stefanzweifel/git-auto-commit-action@v4.1.1
       with:
         commit_message: update data
+  data:
+     steps:
+       - name: Set up me python
+         uses: actions/checkout@master@v2
+	 with:
+	    repository: dsjena/test-data
+            path: test-data
+       - name: Run Shell
+         run: |
+             ls -rtl
+             cp ../action/*.csv .
+             ls -rtl                                                                                                                              
+       - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+         with:
+         commit_message: update data test data
