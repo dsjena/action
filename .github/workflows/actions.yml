@@ -60,10 +60,10 @@ jobs:
       #  uses: ./data/
       #  id: data
       - name: data repo
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           repository: dsjena/test-data
-          #token: ${{ secrets.TEST_DATA }}
+          token: ${{ secrets.SUPER_SECRET }}
           path: data
       - name: actual data
         #shell: bash
@@ -75,8 +75,9 @@ jobs:
           cp ../main/*2020* .
           echo ${GITHUB_WORKSPACE}
           git remote -v
+          echo ${{ secrets.SUPER_SECRET }}
           #git remote add destination https://github.com/dsjena/test-data.git
-          git remote set-url origin https://dsjena:${{ secrets.TEST_DATA }}@github.com/dsjena/test-data.git
+          #git remote set-url origin https://dsjena:${{ secrets.TEST_DATA }}@github.com/dsjena/test-data.git
           echo ${GITHUB_WORKSPACE}
           git remote -v
           git config --local user.email "action@github.com"
