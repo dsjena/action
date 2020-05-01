@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          path: main
+          path: cdash
 
       - name: set_R
         uses: r-lib/actions/setup-r@master
@@ -27,12 +27,12 @@ jobs:
 
       - name: Run The script
         run: |
-          cd ./main/ 
+          cd ./cdash/ 
           Rscript R/readData.R
 
       - name: Run The script
         run: |
-          cd ./main/ 
+          cd ./cdash/ 
           git remote add destination https://github.com/dsjena/action.git
           git remote -v                                                                                                                                              git config --local user.email "action@github.com"                                                                                                          git config --local user.name "GitHub Action"                                                                                                               git add .                                                                                                                                                  git status                                                                                                                                                 git diff-index --quiet HEAD || git commit -m "Update json" -a                                                                                              git push         
 
