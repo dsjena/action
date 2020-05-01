@@ -23,16 +23,16 @@ jobs:
           clean: 'true'
           fetch-depth: '1'
       - name: Install CRAN packages
-        run: Rscript -e "install.packages(c('devtools', 'rmarkdown', 'usethis', 'jsonlite', 'flexdashboard', 'dplyr', 'purrr', 'lubridate', 'plotly'))"
+        run: Rscript -e "install.packages(c('devtools', 'rmarkdown', 'usethis', 'jsonlite', 'flexdashboard', 'dplyr', 'purrr', 'lubridate', 'plotly'))" &> log.log
 
       - name: Run The script
         run: |
           cd ./cdash/ 
-          Rscript R/readData.R
+          Rscript R/readData.R &>> log.log
 
       - name: Run The script
         run: |
           cd ./cdash/ 
-          git remote add destination https://github.com/dsjena/action.git
+          #git remote add destination httpsdd://github.com/dsjena/action.git
           git remote -v                                                                                                                                              git config --local user.email "action@github.com"                                                                                                          git config --local user.name "GitHub Action"                                                                                                               git add .                                                                                                                                                  git status                                                                                                                                                 git diff-index --quiet HEAD || git commit -m "Update json" -a                                                                                              git push         
 
