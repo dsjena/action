@@ -22,8 +22,8 @@ jobs:
           token: ${{ github.token }}
           clean: 'true'
           fetch-depth: '1'
-      #- name: Install CRAN packages
-      #  run: Rscript -e "install.packages(c('devtools', 'rmarkdown', 'flexdashboard', 'dplyr', 'purrr', 'lubridate', 'plotly'))"
+      - name: Install CRAN packages
+        run: Rscript -e "install.packages(c('devtools', 'rmarkdown', 'usethis', 'jsonlite', 'flexdashboard', 'dplyr', 'purrr', 'lubridate', 'plotly'))"
 
       - name: Run The script
         run: |
