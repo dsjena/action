@@ -1,0 +1,98 @@
+---
+title: "Navigation Bar"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    navbar:
+      - { title: "About", href: "https://example.com/about" }
+---
+ 
+ 
+Indian-State
+=======================================================================
+
+Row
+-------------------------------------
+
+### confirmed {.value-box}
+```{r}
+```
+### confirmed {.value-box}
+```{r}
+```
+### confirmed {.value-box}
+```{r}
+```
+### confirmed {.value-box}
+```{r}
+```
+
+Row
+-------------------------------------
+### Something
+
+```{r}
+```
+
+Row
+-------------------------------------
+
+### Something
+```{r}
+```
+### Other thing
+```{r}
+```
+ 
+ 
+trend {data-orientation=columns}
+=======================================================================
+
+column {data-width=400}
+-------------------------------------
+    
+### World Top 25
+    
+```{r}
+```
+   
+column {data-width=600}
+-------------------------------------
+   
+### India
+
+```{r}
+```   
+ 
+### Map
+    
+```{r}
+```
+ 
+ 
+ 
+India
+=======================================================================
+
+Row {data-width=400}
+-------------------------------------
+    
+### World Top 25
+    
+```{r}
+```
+   
+Column {data-width=600}
+-------------------------------------
+   
+### India
+
+```{r}
+```   
+ 
+### Map
+    
+```{r}
+```
+
+

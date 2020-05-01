@@ -1,0 +1,111 @@
+name: Data Collector
+on:
+  push:
+  #schedule:
+  #  - cron:  '*/30 * * * *'
+#
+
+jobs:
+  extract_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: main
+      - name: Set up me python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      
+      #- name: Install dependencies
+        #run: |
+          #python -m pip install --upgrade pip
+          #pip install -r requirements.txt
+        
+      #- name: main sec
+      #  uses: ./main/
+      #  id: code
+      - name: actual run
+        run: |
+          echo ${GITHUB_WORKSPACE}
+          pwd
+          cd main
+          #ls -rtl
+          ls
+          sh run.sh
+          fmt=`date '+%d%m%Y%M%S'`
+          touch ${fmt}
+          #ls ../
+          #ls ../data
+          #cp -r ${fmt} ../data/.
+          #cp -r csv/*.csv ../data/.
+          #ls ../data
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git status
+          git diff-index --quiet HEAD || git commit -m "Update json" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: main
+      #- name: commit main
+      #  uses: stefanzweifel/git-auto-commit-action@v4.1.1
+      #  with:
+      #    commit_message: update data
+
+      #- name: Update Data
+      #  uses: ./data/
+      #  id: data
+      - name: data repo
+        uses: actions/checkout@v2
+        with:
+          repository: dsjena/test-data
+          token: ${{ secrets.SUPER_SECRET }}
+          path: data
+      - name: actual data
+        #shell: bash
+        #env:
+        #  GITHUB_TOKEN: ${{ secrets.TEST_DATA }}
+        run: |
+          cd ./data/
+          ls 
+          cp ../main/*2020* .
+          echo ${GITHUB_WORKSPACE}
+          git remote -v
+          #echo ${{ secrets.SUPER_SECRET }}
+          #git remote add destination https://github.com/dsjena/test-data.git
+          #git remote set-url origin https://dsjena:${{ secrets.TEST_DATA }}@github.com/dsjena/test-data.git
+          echo ${GITHUB_WORKSPACE}
+          git remote -v
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git status
+          git diff-index --quiet HEAD || git commit -m "Update json" -a
+          git push
+          #git push https://dsjena:${{ secrets.TEST_DATA }}@github.com/dsjena/test-data.git
+          #${{ secrets.GITHUB_TOKEN }}
+          #git push https://${GITHUB_ACTOR}:${{ secrets.SUPER_SECRET }}@github.com/dsjena/test-data.git
+      #- uses: mikeal/publish-to-github-action@master
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.TEST_DATA }}
+      
+      #- name: Push second data
+      #  uses: ad-m/github-push-action@master
+      #  with:
+      #    repository: dsjena/test-data
+      #    github_token: ${{ secrets.TEST_DATA }}
+      #    directory: data
+            
+          
+          #github_token: ${{ secrets.TEST_DATA }}
+          #directory: data
+      ##    cp -r ../main/csv .
+      #    
+      #- name: commit data
+      #  uses: stefanzweifel/git-auto-commit-action@v4.1.1
+      ##  with:
+      #    commit_message: update data
