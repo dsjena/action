@@ -14,7 +14,7 @@ jobs:
         with:
           path: cdash
 
-      - name: set_R
+      - name: Set ENV
         uses: r-lib/actions/setup-r@master
         with:
           repository: ${{ github.repository }}
@@ -23,12 +23,12 @@ jobs:
           clean: 'true'
           fetch-depth: '1'
       - name: Install CRAN packages
-        run: Rscript -e "install.packages(c('devtools', 'rmarkdown', 'usethis', 'jsonlite', 'flexdashboard', 'dplyr', 'purrr', 'lubridate', 'plotly'))" &> log.log
+        run: Rscript -e "install.packages(c('devtools', 'rmarkdown', 'usethis', 'jsonlite', 'flexdashboard', 'dplyr', 'purrr', 'lubridate', 'plotly'))" &> log.txt
 
       - name: Run The script
         run: |
-          cd ./cdash/ 
-          Rscript R/readData.R &>> log.log
+          cd ./cdash/
+          sh run.sh &>> log.txt 
 
       - name: Run The script
         run: |
