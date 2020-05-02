@@ -28,7 +28,7 @@ jobs:
       - name: Run The script
         run: |
           cd ./cdash/
-          sh run.sh &>> log.txt 
+          sh run.sh >> log.txt 2>&1
 
       - name: Run The script
         run: |
