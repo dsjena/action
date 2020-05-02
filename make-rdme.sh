@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 op="README.md"
 cat main.md > $op
 echo "" >> $op
@@ -10,6 +9,7 @@ echo "# Recieved " >> $op
 echo "" >> $op
 
 #echo > $op
+printf  "|  |  |  | \n" >> $op
 printf  "|:-----:|:-----:|:------:| \n" >> $op
 i=$(< recieved.md wc -l)
 echo $i
@@ -27,7 +27,7 @@ do
   #echo $kk $j
   if [ $kk == 2 ]; then
     printf "$line" >> $op
-    printf " | \n" >> $op
+    printf " |\n" >> $op
   elif [ $kk == 0 ]; then
     printf "| $line" >> $op
     printf " | ">> $op
@@ -42,22 +42,28 @@ while ((j<=c)); do
     kk=$((j%3))
   #echo $kk $j
   if [ $kk == 2 ]; then
-    printf " - " >> $op
-    printf " | \n" >> $op
-  else 
-    printf " - " >> $op
+    printf "$line" >> $op
+    printf " |\n" >> $op
+  elif [ $kk == 0 ]; then
+    printf "| $line" >> $op
+    printf " | ">> $op
+  else  
+    printf "$line" >> $op
     printf " | ">> $op
   fi
   j=$((j+1))
 done
-printf  "|:-----:|:-----:|:------:| \n" >> $op
+
 #----------------
 
+echo "" >> $op
+echo "" >> $op
 echo "# Processed " >> $op
 echo "" >> $op
 
 
 #echo > $op
+printf  "|  |  |  | \n" >> $op
 printf  "|:-----:|:-----:|:------:| \n" >> $op
 i=$(< processed.md wc -l)
 echo $i
@@ -95,7 +101,7 @@ while ((j<=c)); do
   fi
   j=$((j+1))
 done
-printf  "|:-----:|:-----:|:------:| \n" >> $op
+
 #----------------
 
 
