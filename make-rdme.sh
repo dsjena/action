@@ -10,7 +10,7 @@ echo "# Recieved " >> $op
 echo "" >> $op
 
 #echo > $op
-echo "|:-----:|:-----:|:------:|" >> $op
+printf  "|:-----:|:-----:|:------:| \n" >> $op
 i=$(< recieved.md wc -l)
 echo $i
 a=$((i/3))
@@ -28,9 +28,12 @@ do
   if [ $kk == 2 ]; then
     printf "$line" >> $op
     printf " | \n" >> $op
-  else 
+  elif [ $kk == 0 ]; then
+    printf "| $line" >> $op
+    printf " | ">> $op
+  else  
     printf "$line" >> $op
-    printf "| ">> $op
+    printf " | ">> $op
   fi
   j=$((j+1))
 done < recieved.md
@@ -43,11 +46,11 @@ while ((j<=c)); do
     printf " | \n" >> $op
   else 
     printf " - " >> $op
-    printf "| ">> $op
+    printf " | ">> $op
   fi
   j=$((j+1))
 done
-echo "|:-----:|:-----:|:------:|" >> $op
+printf  "|:-----:|:-----:|:------:| \n" >> $op
 #----------------
 
 echo "# Processed " >> $op
@@ -55,7 +58,7 @@ echo "" >> $op
 
 
 #echo > $op
-echo "|:-----:|:-----:|:------:|" >> $op
+printf  "|:-----:|:-----:|:------:| \n" >> $op
 i=$(< processed.md wc -l)
 echo $i
 a=$((i/3))
@@ -92,7 +95,7 @@ while ((j<=c)); do
   fi
   j=$((j+1))
 done
-echo "|:-----:|:-----:|:------:|" >> $op
+printf  "|:-----:|:-----:|:------:| \n" >> $op
 #----------------
 
 
