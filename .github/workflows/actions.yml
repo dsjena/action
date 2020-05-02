@@ -1,9 +1,9 @@
 name: Data Refresh
 
-on: [push]
-  #schedule:
-    # * is a special character in YAML so you have to quote this string
-   # - cron:  '0 */6 * * *'
+on: 
+  push:
+  schedule:
+    - cron:  '5 4 * * *'
 jobs:
   build:
     name: refresh the dashboard
@@ -16,6 +16,7 @@ jobs:
 
       - name: Set ENV
         uses: r-lib/actions/setup-r@master
+        uses: r-lib/actions/setup-pandoc@master
         with:
           repository: ${{ github.repository }}
           ref: 'master'
