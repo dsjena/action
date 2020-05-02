@@ -29,11 +29,13 @@ jobs:
         run: |
           cd ./cdash/
           sh run.sh >> log.txt 2>&1
+          dtt=`date`
+          echo "${dtt}" >> processed.md
+          bash make-rdme.sh >> log.txt 2>&1
 
-      - name: Run The script
+      - name:  push to git
         run: |
           cd ./cdash/ 
-          #git remote add destination httpsdd://github.com/dsjena/action.git
           git remote -v
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
