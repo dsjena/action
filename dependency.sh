@@ -1,0 +1,1 @@
+Rscript -e "install.packages(c('devtools', 'rmarkdown', 'usethis', 'jsonlite', 'flexdashboard', 'dplyr', 'purrr', 'lubridate', 'plotly'))"

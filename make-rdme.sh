@@ -10,7 +10,7 @@ echo "# Recieved " >> $op
 echo "" >> $op
 
 #echo > $op
-echo "|---|---|---|" >> $op
+echo "|:-----:|:-----:|:------:|" >> $op
 i=$(< recieved.md wc -l)
 echo $i
 a=$((i/3))
@@ -47,7 +47,7 @@ while ((j<=c)); do
   fi
   j=$((j+1))
 done
-echo "|---|---|---|" >> $op
+echo "|:-----:|:-----:|:------:|" >> $op
 #----------------
 
 echo "# Processed " >> $op
@@ -55,7 +55,7 @@ echo "" >> $op
 
 
 #echo > $op
-echo "|---|---|---|" >> $op
+echo "|:-----:|:-----:|:------:|" >> $op
 i=$(< processed.md wc -l)
 echo $i
 a=$((i/3))
@@ -92,7 +92,7 @@ while ((j<=c)); do
   fi
   j=$((j+1))
 done
-echo "|---|---|---|" >> $op
+echo "|:-----:|:-----:|:------:|" >> $op
 #----------------
 
 

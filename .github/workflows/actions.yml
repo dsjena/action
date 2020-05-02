@@ -23,7 +23,9 @@ jobs:
           clean: 'true'
           fetch-depth: '1'
       - name: Install CRAN packages
-        run: Rscript -e "install.packages(c('devtools', 'rmarkdown', 'usethis', 'jsonlite', 'flexdashboard', 'dplyr', 'purrr', 'lubridate', 'plotly'))" &> log.txt
+        run: |
+          cd ./cdash/
+          sh dependency.sh > log.txt 2>&1
 
       - name: Run The script
         run: |
