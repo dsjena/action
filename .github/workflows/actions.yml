@@ -36,7 +36,7 @@ jobs:
       - name: Run The script
         run: |
           cd ./cdash/
-          Rscript 'rmarkdown::render("india/index.Rmd", output_format = "india/index.html")'
+          Rscript 'rmarkdown::render("./india/index.Rmd", output_format = "india/index.html")'
           #sh run.sh >> log.txt 2>&1
           dtt=`date`
           echo "${dtt}" >> processed.md
