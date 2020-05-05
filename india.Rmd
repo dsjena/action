@@ -11,7 +11,7 @@ output:
 ```{r setup, include=FALSE}
 #------------------ Packages ------------------
 library(flexdashboard)
-load(file = "../data/indiadata.rda")
+load(file = "data/indiadata.rda")
 `%>%` <- magrittr::`%>%`
 
 
