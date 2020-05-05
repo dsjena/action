@@ -36,8 +36,8 @@ jobs:
       - name: Run The script
         run: |
           cd ./cdash/
-          Rscript -e 'rmarkdown::render("india.Rmd")'
-          #sh run.sh >> log.txt 2>&1
+          #Rscript -e 'rmarkdown::render("india.Rmd")'
+          sh run.sh >> log.txt 2>&1
           dtt=`date`
           echo "${dtt}" >> processed.md
           bash make-rdme.sh >> log.txt 2>&1
