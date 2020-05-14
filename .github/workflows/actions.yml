@@ -2,42 +2,41 @@ name: Data Refresh
 
 on: 
   push:
-  schedule:
-    - cron:  '5 4 * * *'
+  #schedule:
+  #  - cron:  '5 4 * * *'
 jobs:
   build:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        R: [ '3.5.3', '3.6.1' ]
     name: refresh the dashboard
-    runs-on: macos-latest
     steps:
       #- uses: actions/checkout@v1
       #    with: cdash
       #- uses: r-lib/actions/setup-r@v1
       #- uses: r-lib/actions/setup-pandoc@v1
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
           path: cdash
       #
       - name: Set ENV
         uses: r-lib/actions/setup-r@master
         with:
-          repository: ${{ github.repository }}
-          ref: 'master'
-          token: ${{ github.token }}
-          clean: 'true'
-          fetch-depth: '1'
+          r-version: ${{ matrix.R }}
       - name: pandoc
         uses: r-lib/actions/setup-pandoc@v1
       - name: Install CRAN packages
         run: |
           cd ./cdash/
           sh dependency.sh > log.txt 2>&1
-
+          Rscript -e 'print("hello")'
       - name: Run The script
         run: |
           cd ./cdash/
           #Rscript -e 'rmarkdown::render("india.Rmd")'
-          sh run.sh >> log.txt 2>&1
+          #sh run.sh >> log.txt 2>&1
           dtt=`date`
           echo "${dtt}" >> processed.md
           bash make-rdme.sh >> log.txt 2>&1
